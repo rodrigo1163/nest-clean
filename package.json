@@ -17,6 +17,9 @@
 		"@nestjs/common": "^11.0.1",
 		"@nestjs/core": "^11.0.1",
 		"@nestjs/platform-express": "^11.0.1",
+		"@prisma/adapter-pg": "8.1.0-dev.1",
+		"@prisma/client": "8.1.0-dev.1",
+		"pg": "^8.23.0",
 		"reflect-metadata": "^0.2.2",
 		"rxjs": "^7.8.1"
 	},
@@ -27,6 +30,7 @@
 		"@nestjs/testing": "^11.0.1",
 		"@types/express": "^5.0.0",
 		"@types/node": "^24.13.3",
+		"@types/pg": "^8.23.1",
 		"dotenv": "^17.4.2",
 		"globals": "^17.0.0",
 		"prisma": "8.1.0-dev.1",
