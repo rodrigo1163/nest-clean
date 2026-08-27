@@ -17,6 +17,8 @@
 		"@nestjs/common": "^11.0.1",
 		"@nestjs/config": "^4.0.4",
 		"@nestjs/core": "^11.0.1",
+		"@nestjs/jwt": "^11.0.2",
+		"@nestjs/passport": "^11.0.5",
 		"@nestjs/platform-express": "^11.0.1",
 		"@prisma/adapter-pg": "8.1.0-dev.1",
 		"@prisma/client": "8.1.0-dev.1",
