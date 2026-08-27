@@ -1,7 +1,8 @@
-@baseUrl = http://localhost:3333
+@baseUrl = http://localhost:3334
 @authToken = {{ authenticate.response.body.access_token }}
 
 # @name create_account
+
 POST {{baseUrl}}/accounts
 Content-Type: application/json
 
