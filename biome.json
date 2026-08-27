@@ -6,7 +6,10 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": ["**", "!!**/dist"]
+		"includes": [
+			"**",
+			"!!**/dist"
+		]
 	},
 	"formatter": {
 		"enabled": true,
@@ -17,17 +20,14 @@
 		"rules": {
 			"preset": "recommended",
 			"style": {
-				"useImportType": {
-					"level": "error",
-					"fix": "safe",
-					"options": {
-						"style": "auto"
-					}
-				}
+				"useImportType": "off"
 			}
 		}
 	},
 	"javascript": {
+		"parser": {
+			"unsafeParameterDecoratorsEnabled": true
+		},
 		"formatter": {
 			"quoteStyle": "single",
 			"semicolons": "asNeeded"
