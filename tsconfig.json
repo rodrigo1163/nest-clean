@@ -10,7 +10,7 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"allowSyntheticDefaultImports": true,
-		"target": "ES2023",
+		"target": "ES2024",
 		"sourceMap": true,
 		"outDir": "./dist",
 		"rootDir": "./src",
@@ -23,7 +23,20 @@
 		"strictBindCallApply": false,
 		"noFallthroughCasesInSwitch": false,
 		"types": [
-			"node"
-		]
-	}
+			"node",
+			"vitest/globals"
+		],
+		"paths": {
+			"@/*": [
+				"./src/*"
+			]
+		}
+	},
+	"include": [
+		"src/**/*.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"dist"
+	]
 }
