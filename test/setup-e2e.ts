@@ -3,11 +3,9 @@ import { execSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
 import { PrismaPg } from '@prisma/adapter-pg'
 import { afterAll, beforeAll } from 'vitest'
-import { PrismaClient } from '../src/generated/prisma/client'
+import { PrismaClient } from '../src/generated/prisma/client.js'
 
-const prisma = new PrismaClient({
-	adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
-})
+let prisma: PrismaClient
 
 function generateUniqueDatabaseURL(schemaId: string) {
 	if (!process.env.DATABASE_URL) {
@@ -27,6 +25,13 @@ beforeAll(async () => {
 	const databaseURL = generateUniqueDatabaseURL(schemaId)
 
 	process.env.DATABASE_URL = databaseURL
+
+	prisma = new PrismaClient({
+		adapter: new PrismaPg(
+			{ connectionString: databaseURL },
+			{ schema: schemaId },
+		),
+	})
 
 	execSync('pnpm prisma migrate deploy')
 })

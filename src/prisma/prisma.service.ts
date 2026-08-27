@@ -12,8 +12,17 @@ export class PrismaService
 	implements OnModuleInit, OnModuleDestroy
 {
 	constructor() {
+		const databaseURL = process.env.DATABASE_URL
+
+		if (!databaseURL) {
+			throw new Error('DATABASE_URL environment variable is required.')
+		}
+
+		const url = new URL(databaseURL)
+		const schema = url.searchParams.get('schema') ?? undefined
+
 		super({
-			adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
+			adapter: new PrismaPg({ connectionString: databaseURL }, { schema }),
 			log: ['warn', 'error'],
 		})
 	}
