@@ -6,10 +6,7 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": [
-			"**",
-			"!!**/dist"
-		]
+		"includes": ["**", "!!**/dist", "!!src/generated/prisma"]
 	},
 	"formatter": {
 		"enabled": true,
@@ -19,6 +16,17 @@
 		"enabled": true,
 		"rules": {
 			"preset": "recommended",
+			"complexity": {
+				"noBannedTypes": "warn",
+				"noStaticOnlyClass": "off"
+			},
+			"correctness": {
+				"noUnusedImports": "error"
+			},
+			"suspicious": {
+				"noExplicitAny": "warn",
+				"useIterableCallbackReturn": "off"
+			},
 			"style": {
 				"useImportType": "off"
 			}

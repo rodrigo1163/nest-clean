@@ -1,9 +1,11 @@
 import { BadRequestException, PipeTransform } from '@nestjs/common'
-import { ZodError, ZodType } from 'zod'
+import { ZodError, type output as ZodOutput, ZodType } from 'zod'
 import { fromError } from 'zod-validation-error'
 
-export class ZodValidationPipe implements PipeTransform {
-	constructor(private schema: ZodType<any, any, any>) {}
+export class ZodValidationPipe<TSchema extends ZodType>
+	implements PipeTransform<unknown, ZodOutput<TSchema>>
+{
+	constructor(private readonly schema: TSchema) {}
 
 	transform(value: unknown) {
 		try {
