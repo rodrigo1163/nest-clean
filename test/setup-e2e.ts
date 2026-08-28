@@ -3,7 +3,7 @@ import { execSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
 import { PrismaPg } from '@prisma/adapter-pg'
 import { afterAll, beforeAll } from 'vitest'
-import { PrismaClient } from '../src/generated/prisma/client.js'
+import { PrismaClient } from '../src/infra/prisma/generated/client.js'
 
 let prisma: PrismaClient
 
