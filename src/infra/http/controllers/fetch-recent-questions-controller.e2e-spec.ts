@@ -4,7 +4,7 @@ import { Test } from '@nestjs/testing'
 import { hash } from 'bcryptjs'
 import request from 'supertest'
 import { AppModule } from '@/infra/app.module.js'
-import { PrismaService } from '@/infra/prisma/prisma.service.js'
+import { PrismaService } from '@/infra/database/prisma/prisma.service.js'
 
 describe('Fetch recent questions (E2E)', () => {
 	let app: INestApplication
