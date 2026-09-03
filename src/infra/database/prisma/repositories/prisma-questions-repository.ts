@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common'
-import { PaginationParams } from '@/core/repositories/pagination-params.js'
-import { QuestionsRepository } from '@/domain/forum/application/repositories/questions-repository.js'
-import { Question } from '@/domain/forum/enterprise/entities/question.js'
+import { PaginationParams } from '#/core/repositories/pagination-params.js'
+import { QuestionsRepository } from '#/domain/forum/application/repositories/questions-repository.js'
+import { Question } from '#/domain/forum/enterprise/entities/question.js'
 import { PrismaQuestionMapper } from '../mappers/prisma-question-mapper.js'
 import { PrismaService } from '../prisma.service.js'
 
-Injectable()
+@Injectable()
 export class PrismaQuestionsRepository implements QuestionsRepository {
 	constructor(private prisma: PrismaService) {}
 

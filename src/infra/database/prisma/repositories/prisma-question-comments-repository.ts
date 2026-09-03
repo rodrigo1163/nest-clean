@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
-import { PaginationParams } from '@/core/repositories/pagination-params.js'
-import { QuestionCommentsRepository } from '@/domain/forum/application/repositories/question-comments-repository.js'
-import { QuestionComment } from '@/domain/forum/enterprise/entities/question-comment.js'
+import { PaginationParams } from '#/core/repositories/pagination-params.js'
+import { QuestionCommentsRepository } from '#/domain/forum/application/repositories/question-comments-repository.js'
+import { QuestionComment } from '#/domain/forum/enterprise/entities/question-comment.js'
 
 @Injectable()
 export class PrismaQuestionCommentsRepository

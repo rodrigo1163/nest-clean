@@ -1,5 +1,5 @@
-import { Either, right } from '@/core/either.js'
-import { Question } from '@/domain/forum/enterprise/entities/question.js'
+import { Either, right } from '#/core/either.js'
+import { Question } from '#/domain/forum/enterprise/entities/question.js'
 import { QuestionsRepository } from '../repositories/questions-repository.js'
 
 interface FetchRecentQuestionsUseCaseRequest {

@@ -1,4 +1,4 @@
-import { Either, right } from '@/core/either.js'
+import { Either, right } from '#/core/either.js'
 import { QuestionComment } from '../../enterprise/entities/question-comment.js'
 import { QuestionCommentsRepository } from '../repositories/question-comments-repository.js'
 

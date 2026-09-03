@@ -1,5 +1,5 @@
-import { Either, right } from '@/core/either.js'
-import { UniqueEntityId } from '@/core/entities/unique-entity-id.js'
+import { Either, right } from '#/core/either.js'
+import { UniqueEntityId } from '#/core/entities/unique-entity-id.js'
 import { Notification } from '../../enterprise/entities/notification.js'
 import { NotificationsRepository } from '../repositories/notifications-repository.js'
 

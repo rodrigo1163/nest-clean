@@ -1,5 +1,5 @@
-import { Either, left, right } from '@/core/either.js'
-import { Question } from '@/domain/forum/enterprise/entities/question.js'
+import { Either, left, right } from '#/core/either.js'
+import { Question } from '#/domain/forum/enterprise/entities/question.js'
 import { ResourceNotFoundError } from '../../../../core/errors/errors/resource-not-found-error.js'
 import { QuestionsRepository } from '../repositories/questions-repository.js'
 

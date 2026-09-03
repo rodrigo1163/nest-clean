@@ -1,6 +1,6 @@
-import { UniqueEntityId } from '@/core/entities/unique-entity-id.js'
-import { Question } from '@/domain/forum/enterprise/entities/question.js'
-import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug.js'
+import { UniqueEntityId } from '#/core/entities/unique-entity-id.js'
+import { Question } from '#/domain/forum/enterprise/entities/question.js'
+import { Slug } from '#/domain/forum/enterprise/entities/value-objects/slug.js'
 import {
 	Prisma,
 	Question as PrismaQuestion,

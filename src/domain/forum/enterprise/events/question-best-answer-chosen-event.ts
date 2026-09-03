@@ -1,5 +1,5 @@
-import { UniqueEntityId } from '@/core/entities/unique-entity-id.js'
-import { DomainEvent } from '@/core/events/domain-event.js'
+import { UniqueEntityId } from '#/core/entities/unique-entity-id.js'
+import { DomainEvent } from '#/core/events/domain-event.js'
 import { Question } from '../entities/question.js'
 
 export class QuestionBestAnswerChosenEvent implements DomainEvent {

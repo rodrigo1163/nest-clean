@@ -24,8 +24,8 @@
 		"noFallthroughCasesInSwitch": false,
 		"types": ["node", "vitest/globals"],
 		"paths": {
-			"@/*": ["./src/*"],
-			"@test/*": ["./test/*"]
+			"#/*": ["./src/*"],
+			"#test/*": ["./test/*"]
 		}
 	},
 	"include": ["src/**/*.ts", "test/**/*.ts"],

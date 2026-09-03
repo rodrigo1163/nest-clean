@@ -1,7 +1,7 @@
-import { makeQuestion } from '@test/factories/make-questions.js'
-import { InMemoryQuestionAttachmentsRepository } from '@test/repositories/in-memory-question-attachments-repository.js'
-import { InMemoryQuestionCommentsRepository } from '@test/repositories/in-memory-question-comments-repository.js'
-import { InMemoryQuestionsRepository } from '@test/repositories/in-memory-questions-repository.js'
+import { makeQuestion } from '#test/factories/make-questions.js'
+import { InMemoryQuestionAttachmentsRepository } from '#test/repositories/in-memory-question-attachments-repository.js'
+import { InMemoryQuestionCommentsRepository } from '#test/repositories/in-memory-question-comments-repository.js'
+import { InMemoryQuestionsRepository } from '#test/repositories/in-memory-questions-repository.js'
 import { CommentOnQuestionUseCase } from './comment-on-question.js'
 
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository

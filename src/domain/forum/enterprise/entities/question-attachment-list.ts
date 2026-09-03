@@ -1,4 +1,4 @@
-import { WatchedList } from '@/core/entities/watched-list.js'
+import { WatchedList } from '#/core/entities/watched-list.js'
 import { QuestionAttachment } from './question-attachment.js'
 
 export class QuestionAttachmentList extends WatchedList<QuestionAttachment> {

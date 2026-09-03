@@ -1,6 +1,6 @@
-import { AggregateRoot } from '@/core/entities/aggregate-root.js'
-import { UniqueEntityId } from '@/core/entities/unique-entity-id.js'
-import { Optional } from '@/core/types/optional.js'
+import { AggregateRoot } from '#/core/entities/aggregate-root.js'
+import { UniqueEntityId } from '#/core/entities/unique-entity-id.js'
+import { Optional } from '#/core/types/optional.js'
 import { AnswerCreatedEvent } from '../events/answer-created-event.js'
 import { AnswerAttachmentList } from './answer-attachment-list.js'
 

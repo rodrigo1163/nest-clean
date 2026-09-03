@@ -1,10 +1,10 @@
 import { faker } from '@faker-js/faker'
-import { UniqueEntityId } from '@/core/entities/unique-entity-id.js'
+import { UniqueEntityId } from '#/core/entities/unique-entity-id.js'
 import {
 	Question,
 	QuestionProps,
-} from '@/domain/forum/enterprise/entities/question.js'
-import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug.js'
+} from '#/domain/forum/enterprise/entities/question.js'
+import { Slug } from '#/domain/forum/enterprise/entities/value-objects/slug.js'
 
 export function makeQuestion(
 	override: Partial<QuestionProps> = {},

@@ -1,5 +1,5 @@
-import { Entity } from '@/core/entities/entity.js'
-import { UniqueEntityId } from '@/core/entities/unique-entity-id.js'
+import { Entity } from '#/core/entities/entity.js'
+import { UniqueEntityId } from '#/core/entities/unique-entity-id.js'
 
 interface StudentProps {
 	name: string

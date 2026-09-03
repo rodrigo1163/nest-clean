@@ -1,5 +1,6 @@
-import { Either, right } from '@/core/either.js'
-import { UniqueEntityId } from '@/core/entities/unique-entity-id.js'
+import { Injectable } from '@nestjs/common'
+import { Either, right } from '#/core/either.js'
+import { UniqueEntityId } from '#/core/entities/unique-entity-id.js'
 import { Question } from '../../enterprise/entities/question.js'
 import { QuestionAttachment } from '../../enterprise/entities/question-attachment.js'
 import { QuestionAttachmentList } from '../../enterprise/entities/question-attachment-list.js'
@@ -19,6 +20,7 @@ type CreateQuestionUseCaseResponse = Either<
 	}
 >
 
+@Injectable()
 export class CreateQuestionUseCase {
 	constructor(private questionsRepository: QuestionsRepository) {}
 

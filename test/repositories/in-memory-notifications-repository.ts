@@ -1,5 +1,5 @@
-import { NotificationsRepository } from '@/domain/notification/application/repositories/notifications-repository.js'
-import { Notification } from '@/domain/notification/enterprise/entities/notification.js'
+import { NotificationsRepository } from '#/domain/notification/application/repositories/notifications-repository.js'
+import { Notification } from '#/domain/notification/enterprise/entities/notification.js'
 
 export class InMemoryNotificationRepository implements NotificationsRepository {
 	public items: Notification[] = []

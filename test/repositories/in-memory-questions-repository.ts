@@ -1,8 +1,8 @@
-import { DomainEvents } from '@/core/events/domain-events.js'
-import { PaginationParams } from '@/core/repositories/pagination-params.js'
-import { QuestionAttachmentsRepository } from '@/domain/forum/application/repositories/question-attachments-repository.js'
-import { QuestionsRepository } from '@/domain/forum/application/repositories/questions-repository.js'
-import { Question } from '@/domain/forum/enterprise/entities/question.js'
+import { DomainEvents } from '#/core/events/domain-events.js'
+import { PaginationParams } from '#/core/repositories/pagination-params.js'
+import { QuestionAttachmentsRepository } from '#/domain/forum/application/repositories/question-attachments-repository.js'
+import { QuestionsRepository } from '#/domain/forum/application/repositories/questions-repository.js'
+import { Question } from '#/domain/forum/enterprise/entities/question.js'
 
 export class InMemoryQuestionsRepository implements QuestionsRepository {
 	public items: Question[] = []
