@@ -1,4 +1,10 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common'
+import {
+	BadRequestException,
+	Body,
+	Controller,
+	Post,
+	UseGuards,
+} from '@nestjs/common'
 import z from 'zod'
 import { CreateQuestionUseCase } from '#/domain/forum/application/use-cases/create-question.js'
 import { CurrentUser } from '../../auth/current-user-decorator.js'
@@ -28,11 +34,15 @@ export class CreateQuestionController {
 		const { title, content } = body
 		const { sub: userid } = user
 
-		await this.createQuestion.execute({
+		const result = await this.createQuestion.execute({
 			title,
 			content,
 			authorId: userid,
 			attachmentsIds: [],
 		})
+
+		if (result.isLeft()) {
+			throw new BadRequestException()
+		}
 	}
 }

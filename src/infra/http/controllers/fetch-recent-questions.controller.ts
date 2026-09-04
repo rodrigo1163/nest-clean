@@ -1,4 +1,10 @@
-import { Controller, Get, Query, UseGuards } from '@nestjs/common'
+import {
+	BadRequestException,
+	Controller,
+	Get,
+	Query,
+	UseGuards,
+} from '@nestjs/common'
 import z from 'zod'
 import { FetchRecentQuestionsUseCase } from '#/domain/forum/application/use-cases/fetch-recent-questions.js'
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard.js'
@@ -28,7 +34,7 @@ export class FetchRecentQuestionsController {
 		})
 
 		if (result.isLeft()) {
-			throw new Error('Failed to fetch recent questions')
+			throw new BadRequestException()
 		}
 
 		const questions = result.value.questions

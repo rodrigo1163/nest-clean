@@ -1,11 +1,15 @@
 import {
+	BadRequestException,
 	Body,
 	Controller,
-	Post, UsePipes
+	Post,
+	UnauthorizedException,
+	UsePipes,
 } from '@nestjs/common'
 import { z } from 'zod'
-import { ZodValidationPipe } from '../pipes/zod-validation-pipe.js'
 import { AuthenticateStudentUseCase } from '#/domain/forum/application/use-cases/authenticate-student.js'
+import { WrongCredentialsError } from '#/domain/forum/application/use-cases/errors/wrong-credentials-error.js'
+import { ZodValidationPipe } from '../pipes/zod-validation-pipe.js'
 
 const authenticateBodySchema = z.object({
 	email: z.email(),
@@ -16,9 +20,7 @@ type AuthenticateBodySchema = z.infer<typeof authenticateBodySchema>
 
 @Controller('/sessions')
 export class AuthenticateController {
-	constructor(
-		private authenticateStudent: AuthenticateStudentUseCase
-	) {}
+	constructor(private authenticateStudent: AuthenticateStudentUseCase) {}
 
 	@Post()
 	@UsePipes(new ZodValidationPipe(authenticateBodySchema))
@@ -30,8 +32,15 @@ export class AuthenticateController {
 			password,
 		})
 
-		if(result.isLeft()){
-			throw new Error()
+		if (result.isLeft()) {
+			const error = result.value
+
+			switch (error.constructor) {
+				case WrongCredentialsError:
+					throw new UnauthorizedException(error.message)
+				default:
+					throw new BadRequestException(error.message)
+			}
 		}
 
 		const { accessToken } = result.value
