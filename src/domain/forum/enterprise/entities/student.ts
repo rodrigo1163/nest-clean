@@ -6,7 +6,7 @@ export interface StudentProps {
 	name: string
 	email: string
 	password: string
-		createdAt: Date
+	createdAt: Date
 	updatedAt?: Date | null
 }
 
@@ -27,11 +27,17 @@ export class Student extends Entity<StudentProps> {
 		return this.props.updatedAt
 	}
 
-	static create(props: Optional<StudentProps, 'createdAt'>, id?: UniqueEntityId) {
-		const student = new Student({
-			...props,
-			createdAt: props.createdAt ?? new Date(),
-		}, id)
+	static create(
+		props: Optional<StudentProps, 'createdAt'>,
+		id?: UniqueEntityId,
+	) {
+		const student = new Student(
+			{
+				...props,
+				createdAt: props.createdAt ?? new Date(),
+			},
+			id,
+		)
 
 		return student
 	}
