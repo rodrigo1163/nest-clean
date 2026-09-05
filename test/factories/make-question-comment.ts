@@ -1,9 +1,12 @@
 import { faker } from '@faker-js/faker'
+import { Injectable } from '@nestjs/common'
 import { UniqueEntityId } from '#/core/entities/unique-entity-id.js'
 import {
 	QuestionComment,
 	QuestionCommentProps,
 } from '#/domain/forum/enterprise/entities/question-comment.js'
+import { PrismaQuestionCommentMapper } from '#/infra/database/prisma/mappers/prisma-question-comment-mapper.js'
+import { PrismaService } from '#/infra/database/prisma/prisma.service.js'
 
 export function makeQuestionComment(
 	override: Partial<QuestionCommentProps> = {},
@@ -20,4 +23,20 @@ export function makeQuestionComment(
 	)
 
 	return questionComment
+}
+
+@Injectable()
+export class QuestionCommentFactoty {
+	constructor(private prisma: PrismaService) {}
+	async makePrismaQuestion(
+		data: Partial<QuestionCommentProps> = {},
+	): Promise<QuestionComment> {
+		const questionComment = makeQuestionComment(data)
+
+		await this.prisma.comment.create({
+			data: PrismaQuestionCommentMapper.toPrisma(questionComment),
+		})
+
+		return questionComment
+	}
 }
