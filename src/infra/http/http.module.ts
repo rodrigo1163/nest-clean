@@ -6,6 +6,7 @@ import { CommentOnQuestionUseCase } from '#/domain/forum/application/use-cases/c
 import { CreateQuestionUseCase } from '#/domain/forum/application/use-cases/create-question.js'
 import { DeleteAnswerUseCase } from '#/domain/forum/application/use-cases/delete-answer.js'
 import { DeleteQuestionUseCase } from '#/domain/forum/application/use-cases/delete-question.js'
+import { DeleteQuestionCommentUseCase } from '#/domain/forum/application/use-cases/delete-question-comment.js'
 import { EditAnswerUseCase } from '#/domain/forum/application/use-cases/edit-answer.js'
 import { EditQuestionUseCase } from '#/domain/forum/application/use-cases/edit-question.js'
 import { FetchQuestionAnswersUseCase } from '#/domain/forum/application/use-cases/fetch-question-answers.js'
@@ -22,6 +23,7 @@ import { CreateAccountController } from './controllers/create-account.controller
 import { CreateQuestionController } from './controllers/create-question.controller.js'
 import { DeleteAnswerController } from './controllers/delete-answer.controller.js'
 import { DeleteQuestionController } from './controllers/delete-question.controller.js'
+import { DeleteQuestionCommentController } from './controllers/delete-question-comment.controller.js'
 import { EditAnwerController } from './controllers/edit-answer.controller.js'
 import { EditQuestionController } from './controllers/edit-question.controller.js'
 import { FetchQuestionAnswersController } from './controllers/fetch-question-answers.controller.js'
@@ -44,6 +46,7 @@ import { GetQuestionBySlugController } from './controllers/get-question-by-slug.
 		FetchQuestionAnswersController,
 		ChooseQuestionBestAnswerController,
 		CommentOnQuestionController,
+		DeleteQuestionCommentController,
 	],
 	providers: [
 		CreateQuestionUseCase,
@@ -59,6 +62,7 @@ import { GetQuestionBySlugController } from './controllers/get-question-by-slug.
 		FetchQuestionAnswersUseCase,
 		ChooseQuestionBestAnswerUseCase,
 		CommentOnQuestionUseCase,
+		DeleteQuestionCommentUseCase,
 	],
 })
 export class HttpModule {}
