@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common'
-import { PrismaClient } from '@prisma/client/extension'
 import { PaginationParams } from '#/core/repositories/pagination-params.js'
 import { AnswersRepository } from '#/domain/forum/application/repositories/answers-repository.js'
 import { Answer } from '#/domain/forum/enterprise/entities/answer.js'
 import { PrismaAnswerMapper } from '../mappers/prisma-answer-mapper.js'
+import { PrismaService } from '../prisma.service.js'
 
 @Injectable()
 export class PrismaAnswerRepository implements AnswersRepository {
-	constructor(private readonly prisma: PrismaClient) {}
+	constructor(private readonly prisma: PrismaService) {}
 
 	async findById(id: string): Promise<Answer | null> {
 		const answer = await this.prisma.answer.findUnique({
@@ -47,7 +47,7 @@ export class PrismaAnswerRepository implements AnswersRepository {
 		})
 	}
 	async delete(answer: Answer): Promise<void> {
-		await this.prisma.answer.update({
+		await this.prisma.answer.delete({
 			where: {
 				id: answer.id.toString(),
 			},
