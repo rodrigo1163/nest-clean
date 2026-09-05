@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common'
 import { Either, left, right } from '#/core/either.js'
 import { Question } from '#/domain/forum/enterprise/entities/question.js'
 import { ResourceNotFoundError } from '../../../../core/errors/errors/resource-not-found-error.js'
@@ -14,6 +15,7 @@ type GetQuestionBySlugUseCaseResponse = Either<
 	}
 >
 
+@Injectable()
 export class GetQuestionBySlugUseCase {
 	constructor(private questionsRepository: QuestionsRepository) {}
 
