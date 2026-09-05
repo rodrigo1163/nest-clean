@@ -5,30 +5,33 @@ import { hash } from 'bcryptjs'
 import request from 'supertest'
 import { AppModule } from '#/infra/app.module.js'
 import { DatabaseModule } from '#/infra/database/database.module.js'
+import { AnswerFactoty } from '#test/factories/make-answers.js'
 import { QuestionFactory } from '#test/factories/make-questions.js'
 import { StudentFactory } from '#test/factories/make-student.js'
 
-describe('Fetch recent questions (E2E)', () => {
+describe('Fetch question answers (E2E)', () => {
 	let app: INestApplication
 	let studentFactory: StudentFactory
 	let questionFactory: QuestionFactory
+	let answerFactory: AnswerFactoty
 	let jwt: JwtService
 
 	beforeAll(async () => {
 		const moduleRef = await Test.createTestingModule({
 			imports: [AppModule, DatabaseModule],
-			providers: [StudentFactory, QuestionFactory],
+			providers: [StudentFactory, QuestionFactory, AnswerFactoty],
 		}).compile()
 
 		app = moduleRef.createNestApplication()
 		studentFactory = moduleRef.get(StudentFactory)
 		questionFactory = moduleRef.get(QuestionFactory)
+		answerFactory = moduleRef.get(AnswerFactoty)
 		jwt = moduleRef.get(JwtService)
 
 		await app.init()
 	})
 
-	test('[GET] /questions', async () => {
+	test('[GET] /questions/:questionId/answers', async () => {
 		const user = await studentFactory.makePrismaStrudent({
 			name: 'Jogn Doe',
 			email: 'johndoe@example.com',
@@ -39,31 +42,39 @@ describe('Fetch recent questions (E2E)', () => {
 			sub: user.id.toString(),
 		})
 
+		const question = await questionFactory.makePrismaQuestion({
+			authorId: user.id,
+		})
+
 		await Promise.all([
-			questionFactory.makePrismaQuestion({
+			answerFactory.makePrismaAnswer({
 				authorId: user.id,
-				title: 'Question 01',
+				questionId: question.id,
+				content: 'Answer 01',
 			}),
-			questionFactory.makePrismaQuestion({
+			answerFactory.makePrismaAnswer({
 				authorId: user.id,
-				title: 'Question 02',
+				questionId: question.id,
+				content: 'Answer 02',
 			}),
-			questionFactory.makePrismaQuestion({
+			answerFactory.makePrismaAnswer({
 				authorId: user.id,
-				title: 'Question 03',
+				questionId: question.id,
+				content: 'Answer 03',
 			}),
 		])
+
 		const response = await request(app.getHttpServer())
-			.get('/questions')
+			.get(`/questions/${question.id}/answers`)
 			.set('Authorization', `Bearer ${accessToken}`)
 			.send()
 
 		expect(response.statusCode).toBe(200)
 		expect(response.body).toEqual({
-			questions: expect.arrayContaining([
-				expect.objectContaining({ title: 'Question 01' }),
-				expect.objectContaining({ title: 'Question 02' }),
-				expect.objectContaining({ title: 'Question 03' }),
+			answers: expect.arrayContaining([
+				expect.objectContaining({ content: 'Answer 01' }),
+				expect.objectContaining({ content: 'Answer 02' }),
+				expect.objectContaining({ content: 'Answer 03' }),
 			]),
 		})
 	})
