@@ -5,13 +5,11 @@ import request from 'supertest'
 import { Slug } from '#/domain/forum/enterprise/entities/value-objects/slug.js'
 import { AppModule } from '#/infra/app.module.js'
 import { DatabaseModule } from '#/infra/database/database.module.js'
-import { PrismaService } from '#/infra/database/prisma/prisma.service.js'
 import { QuestionFactory } from '#test/factories/make-questions.js'
 import { StudentFactory } from '#test/factories/make-student.js'
 
 describe('Get question by slug (E2E)', () => {
 	let app: INestApplication
-	let prisma: PrismaService
 	let studentFactory: StudentFactory
 	let questionFactory: QuestionFactory
 	let jwt: JwtService
@@ -23,7 +21,6 @@ describe('Get question by slug (E2E)', () => {
 		}).compile()
 
 		app = moduleRef.createNestApplication()
-		prisma = moduleRef.get(PrismaService)
 		studentFactory = moduleRef.get(StudentFactory)
 		questionFactory = moduleRef.get(QuestionFactory)
 		jwt = moduleRef.get(JwtService)
@@ -38,7 +35,7 @@ describe('Get question by slug (E2E)', () => {
 			sub: user.id.toString(),
 		})
 
-		await questionFactory.makePrismaStrudent({
+		await questionFactory.makePrismaQuestion({
 			title: 'Question 01',
 			authorId: user.id,
 			slug: Slug.create('question-01'),
