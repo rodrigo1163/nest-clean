@@ -6,6 +6,7 @@ import { CommentOnAnswerUseCase } from '#/domain/forum/application/use-cases/com
 import { CommentOnQuestionUseCase } from '#/domain/forum/application/use-cases/comment-on-question.js'
 import { CreateQuestionUseCase } from '#/domain/forum/application/use-cases/create-question.js'
 import { DeleteAnswerUseCase } from '#/domain/forum/application/use-cases/delete-answer.js'
+import { DeleteAnswerCommentUseCase } from '#/domain/forum/application/use-cases/delete-answer-comment.js'
 import { DeleteQuestionUseCase } from '#/domain/forum/application/use-cases/delete-question.js'
 import { DeleteQuestionCommentUseCase } from '#/domain/forum/application/use-cases/delete-question-comment.js'
 import { EditAnswerUseCase } from '#/domain/forum/application/use-cases/edit-answer.js'
@@ -24,6 +25,7 @@ import { CommentOnQuestionController } from './controllers/comment-on-question.c
 import { CreateAccountController } from './controllers/create-account.controller.js'
 import { CreateQuestionController } from './controllers/create-question.controller.js'
 import { DeleteAnswerController } from './controllers/delete-answer.controller.js'
+import { DeleteAnswerCommentController } from './controllers/delete-answer-comment.controller.js'
 import { DeleteQuestionController } from './controllers/delete-question.controller.js'
 import { DeleteQuestionCommentController } from './controllers/delete-question-comment.controller.js'
 import { EditAnwerController } from './controllers/edit-answer.controller.js'
@@ -50,6 +52,7 @@ import { GetQuestionBySlugController } from './controllers/get-question-by-slug.
 		CommentOnQuestionController,
 		DeleteQuestionCommentController,
 		CommentOnAnswerController,
+		DeleteAnswerCommentController,
 	],
 	providers: [
 		CreateQuestionUseCase,
@@ -67,6 +70,7 @@ import { GetQuestionBySlugController } from './controllers/get-question-by-slug.
 		CommentOnQuestionUseCase,
 		DeleteQuestionCommentUseCase,
 		CommentOnAnswerUseCase,
+		DeleteAnswerCommentUseCase,
 	],
 })
 export class HttpModule {}

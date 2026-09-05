@@ -28,7 +28,7 @@ export function makeStudent(
 @Injectable()
 export class StudentFactory {
 	constructor(private prisma: PrismaService) {}
-	async makePrismaStrudent(data: Partial<StudentProps> = {}): Promise<Student> {
+	async makePrismaStudent(data: Partial<StudentProps> = {}): Promise<Student> {
 		const student = makeStudent(data)
 
 		await this.prisma.user.create({

@@ -29,7 +29,7 @@ describe('Get question by slug (E2E)', () => {
 	})
 
 	test('[GET] /questions/:slug', async () => {
-		const user = await studentFactory.makePrismaStrudent()
+		const user = await studentFactory.makePrismaStudent()
 
 		const accessToken = jwt.sign({
 			sub: user.id.toString(),

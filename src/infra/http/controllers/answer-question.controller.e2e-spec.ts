@@ -31,7 +31,7 @@ describe('Answer question (E2E)', () => {
 	})
 
 	test('[POST] /questions/:questionId/answers', async () => {
-		const user = await studentFactory.makePrismaStrudent()
+		const user = await studentFactory.makePrismaStudent()
 
 		const accessToken = jwt.sign({
 			sub: user.id.toString(),

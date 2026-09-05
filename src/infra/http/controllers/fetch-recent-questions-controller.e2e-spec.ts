@@ -29,7 +29,7 @@ describe('Fetch recent questions (E2E)', () => {
 	})
 
 	test('[GET] /questions', async () => {
-		const user = await studentFactory.makePrismaStrudent({
+		const user = await studentFactory.makePrismaStudent({
 			name: 'Jogn Doe',
 			email: 'johndoe@example.com',
 			password: await hash('123456', 8),
