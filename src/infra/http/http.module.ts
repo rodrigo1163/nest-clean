@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { AnswerQuestionUseCase } from '#/domain/forum/application/use-cases/answer-question.js'
 import { AuthenticateStudentUseCase } from '#/domain/forum/application/use-cases/authenticate-student.js'
+import { ChooseQuestionBestAnswerUseCase } from '#/domain/forum/application/use-cases/choose-question-best-answer.js'
 import { CreateQuestionUseCase } from '#/domain/forum/application/use-cases/create-question.js'
 import { DeleteAnswerUseCase } from '#/domain/forum/application/use-cases/delete-answer.js'
 import { DeleteQuestionUseCase } from '#/domain/forum/application/use-cases/delete-question.js'
@@ -14,6 +15,7 @@ import { CryptographyModule } from '../cryptography/cryptography.module.js'
 import { DatabaseModule } from '../database/database.module.js'
 import { AnswerQuestionController } from './controllers/answer-question.controller.js'
 import { AuthenticateController } from './controllers/authenticate.controller.js'
+import { ChooseQuestionBestAnswerController } from './controllers/choose-question-best-answer.controller.js'
 import { CreateAccountController } from './controllers/create-account.controller.js'
 import { CreateQuestionController } from './controllers/create-question.controller.js'
 import { DeleteAnswerController } from './controllers/delete-answer.controller.js'
@@ -38,6 +40,7 @@ import { GetQuestionBySlugController } from './controllers/get-question-by-slug.
 		EditAnwerController,
 		DeleteAnswerController,
 		FetchQuestionAnswersController,
+		ChooseQuestionBestAnswerController,
 	],
 	providers: [
 		CreateQuestionUseCase,
@@ -51,6 +54,7 @@ import { GetQuestionBySlugController } from './controllers/get-question-by-slug.
 		EditAnswerUseCase,
 		DeleteAnswerUseCase,
 		FetchQuestionAnswersUseCase,
+		ChooseQuestionBestAnswerUseCase,
 	],
 })
 export class HttpModule {}
