@@ -28,7 +28,7 @@ export function makeAnswer(
 @Injectable()
 export class AnswerFactoty {
 	constructor(private prisma: PrismaService) {}
-	async makePrismaQuestion(data: Partial<AnswerProps> = {}): Promise<Answer> {
+	async makePrismaAnswer(data: Partial<AnswerProps> = {}): Promise<Answer> {
 		const answer = makeAnswer(data)
 
 		await this.prisma.answer.create({

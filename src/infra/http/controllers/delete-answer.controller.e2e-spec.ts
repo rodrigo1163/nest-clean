@@ -33,7 +33,7 @@ describe('Edit answer (E2E)', () => {
 		await app.init()
 	})
 
-	test('[PUT] /answers/:id', async () => {
+	test('[DELETE] /answers/:id', async () => {
 		const user = await studentFactory.makePrismaStrudent()
 
 		const accessToken = jwt.sign({
@@ -52,20 +52,17 @@ describe('Edit answer (E2E)', () => {
 		const answerId = answer.id.toString()
 
 		const response = await request(app.getHttpServer())
-			.put(`/answers/${answerId}`)
+			.delete(`/answers/${answerId}`)
 			.set('Authorization', `Bearer ${accessToken}`)
-			.send({
-				content: 'New answer content',
-			})
 
 		expect(response.statusCode).toBe(204)
 
-		const answerOnDatabase = await prisma.answer.findFirst({
+		const answerOnDatabase = await prisma.answer.findUnique({
 			where: {
-				content: 'New answer content',
+				id: answerId,
 			},
 		})
 
-		expect(answerOnDatabase).toBeTruthy()
+		expect(answerOnDatabase).toBeNull()
 	})
 })
