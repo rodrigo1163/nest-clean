@@ -38,9 +38,10 @@ import { FetchQuestionCommentsController } from './controllers/fetch-question-co
 import { FetchRecentQuestionsController } from './controllers/fetch-recent-questions.controller.js'
 import { GetQuestionBySlugController } from './controllers/get-question-by-slug.controller.js'
 import { UploadAttachmentController } from './controllers/upload-attachment-controller.js'
+import { StorageModule } from './storage/storage.module.js'
 
 @Module({
-	imports: [DatabaseModule, CryptographyModule],
+	imports: [DatabaseModule, CryptographyModule, StorageModule],
 	controllers: [
 		CreateAccountController,
 		AuthenticateController,
