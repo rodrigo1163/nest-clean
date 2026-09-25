@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'
 import { AnswerAttachmentsRepository } from '#/domain/forum/application/repositories/answer-attachments-repository.js'
 import { AnswerCommentsRepository } from '#/domain/forum/application/repositories/answer-comments-repository.js'
 import { AnswersRepository } from '#/domain/forum/application/repositories/answers-repository.js'
+import { AttachmentsRepository } from '#/domain/forum/application/repositories/attachments-repository.js'
 import { QuestionAttachmentsRepository } from '#/domain/forum/application/repositories/question-attachments-repository.js'
 import { QuestionCommentsRepository } from '#/domain/forum/application/repositories/question-comments-repository.js'
 import { QuestionsRepository } from '#/domain/forum/application/repositories/questions-repository.js'
@@ -10,6 +11,7 @@ import { PrismaService } from './prisma/prisma.service.js'
 import { PrismaAnswerAttachmentsRepository } from './prisma/repositories/prisma-answer-attachments-repository.js'
 import { PrismaAnswerCommentsRepository } from './prisma/repositories/prisma-answer-comments-repository.js'
 import { PrismaAnswerRepository } from './prisma/repositories/prisma-answer-repository.js'
+import { PrismaAttachmentRepository } from './prisma/repositories/prisma-attachments-repository.js'
 import { PrismaQuestionAttachmentsRepository } from './prisma/repositories/prisma-question-attachments-repository.js'
 import { PrismaQuestionCommentsRepository } from './prisma/repositories/prisma-question-comments-repository.js'
 import { PrismaQuestionsRepository } from './prisma/repositories/prisma-questions-repository.js'
@@ -46,6 +48,10 @@ import { PrismaStudentRepository } from './prisma/repositories/prisma-students-r
 			provide: AnswerAttachmentsRepository,
 			useClass: PrismaAnswerAttachmentsRepository,
 		},
+		{
+			provide: AttachmentsRepository,
+			useClass: PrismaAttachmentRepository,
+		},
 	],
 	exports: [
 		PrismaService,
@@ -56,6 +62,7 @@ import { PrismaStudentRepository } from './prisma/repositories/prisma-students-r
 		AnswersRepository,
 		AnswerCommentsRepository,
 		AnswerAttachmentsRepository,
+		AttachmentsRepository,
 	],
 })
 export class DatabaseModule {}

@@ -17,6 +17,7 @@ import { FetchQuestionCommentsUseCase } from '#/domain/forum/application/use-cas
 import { FetchRecentQuestionsUseCase } from '#/domain/forum/application/use-cases/fetch-recent-questions.js'
 import { GetQuestionBySlugUseCase } from '#/domain/forum/application/use-cases/get-question-by-slug.js'
 import { RegisterStudentUseCase } from '#/domain/forum/application/use-cases/register-student.js'
+import { UploadAndCreateAttachmentUseCase } from '#/domain/forum/application/use-cases/upload-and-create-attachment.js'
 import { CryptographyModule } from '../cryptography/cryptography.module.js'
 import { DatabaseModule } from '../database/database.module.js'
 import { AnswerQuestionController } from './controllers/answer-question.controller.js'
@@ -82,6 +83,7 @@ import { StorageModule } from './storage/storage.module.js'
 		DeleteAnswerCommentUseCase,
 		FetchQuestionCommentsUseCase,
 		FetchAnswerCommentsUseCase,
+		UploadAndCreateAttachmentUseCase,
 	],
 })
 export class HttpModule {}
