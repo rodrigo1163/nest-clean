@@ -5,7 +5,7 @@ import { hash } from 'bcryptjs'
 import request from 'supertest'
 import { AppModule } from '#/infra/app.module.js'
 import { DatabaseModule } from '#/infra/database/database.module.js'
-import { QuestionCommentFactoty } from '#test/factories/make-question-comment.js'
+import { QuestionCommentFactory } from '#test/factories/make-question-comment.js'
 import { QuestionFactory } from '#test/factories/make-questions.js'
 import { StudentFactory } from '#test/factories/make-student.js'
 
@@ -13,19 +13,19 @@ describe('Fetch question comments (E2E)', () => {
 	let app: INestApplication
 	let studentFactory: StudentFactory
 	let questionFactory: QuestionFactory
-	let questionCommentFactory: QuestionCommentFactoty
+	let questionCommentFactory: QuestionCommentFactory
 	let jwt: JwtService
 
 	beforeAll(async () => {
 		const moduleRef = await Test.createTestingModule({
 			imports: [AppModule, DatabaseModule],
-			providers: [StudentFactory, QuestionFactory, QuestionCommentFactoty],
+			providers: [StudentFactory, QuestionFactory, QuestionCommentFactory],
 		}).compile()
 
 		app = moduleRef.createNestApplication()
 		studentFactory = moduleRef.get(StudentFactory)
 		questionFactory = moduleRef.get(QuestionFactory)
-		questionCommentFactory = moduleRef.get(QuestionCommentFactoty)
+		questionCommentFactory = moduleRef.get(QuestionCommentFactory)
 		jwt = moduleRef.get(JwtService)
 
 		await app.init()
@@ -33,7 +33,7 @@ describe('Fetch question comments (E2E)', () => {
 
 	test('[GET] /questions/:questionId/comments', async () => {
 		const user = await studentFactory.makePrismaStudent({
-			name: 'Jogn Doe',
+			name: 'John Doe',
 			email: 'johndoe@example.com',
 			password: await hash('123456', 8),
 		})
@@ -71,10 +71,19 @@ describe('Fetch question comments (E2E)', () => {
 
 		expect(response.statusCode).toBe(200)
 		expect(response.body).toEqual({
-			questionComments: expect.arrayContaining([
-				expect.objectContaining({ content: 'Comment 01' }),
-				expect.objectContaining({ content: 'Comment 02' }),
-				expect.objectContaining({ content: 'Comment 03' }),
+			comments: expect.arrayContaining([
+				expect.objectContaining({
+					content: 'Comment 01',
+					authorName: 'John Doe',
+				}),
+				expect.objectContaining({
+					content: 'Comment 02',
+					authorName: 'John Doe',
+				}),
+				expect.objectContaining({
+					content: 'Comment 03',
+					authorName: 'John Doe',
+				}),
 			]),
 		})
 	})

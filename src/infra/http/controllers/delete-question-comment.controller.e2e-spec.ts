@@ -5,7 +5,7 @@ import request from 'supertest'
 import { AppModule } from '#/infra/app.module.js'
 import { DatabaseModule } from '#/infra/database/database.module.js'
 import { PrismaService } from '#/infra/database/prisma/prisma.service.js'
-import { QuestionCommentFactoty } from '#test/factories/make-question-comment.js'
+import { QuestionCommentFactory } from '#test/factories/make-question-comment.js'
 import { QuestionFactory } from '#test/factories/make-questions.js'
 import { StudentFactory } from '#test/factories/make-student.js'
 
@@ -13,20 +13,20 @@ describe('Delete question comment (E2E)', () => {
 	let app: INestApplication
 	let studentFactory: StudentFactory
 	let questionFactory: QuestionFactory
-	let questionCommentFactory: QuestionCommentFactoty
+	let questionCommentFactory: QuestionCommentFactory
 	let prisma: PrismaService
 	let jwt: JwtService
 
 	beforeAll(async () => {
 		const moduleRef = await Test.createTestingModule({
 			imports: [AppModule, DatabaseModule],
-			providers: [StudentFactory, QuestionFactory, QuestionCommentFactoty],
+			providers: [StudentFactory, QuestionFactory, QuestionCommentFactory],
 		}).compile()
 
 		app = moduleRef.createNestApplication()
 		studentFactory = moduleRef.get(StudentFactory)
 		questionFactory = moduleRef.get(QuestionFactory)
-		questionCommentFactory = moduleRef.get(QuestionCommentFactoty)
+		questionCommentFactory = moduleRef.get(QuestionCommentFactory)
 		prisma = moduleRef.get(PrismaService)
 		jwt = moduleRef.get(JwtService)
 
