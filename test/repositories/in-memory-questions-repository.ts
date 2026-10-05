@@ -12,8 +12,8 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
 
 	constructor(
 		private questionAttachmentsRepository: InMemoryQuestionAttachmentsRepository,
-		private attachmentsRepository: InMemoryAttachmentRepository,
-		private studentsRepository: InMemoryStudentRepository,
+		private attachmentsRepository = new InMemoryAttachmentRepository(),
+		private studentsRepository = new InMemoryStudentRepository(),
 	) {}
 
 	async create(question: Question) {

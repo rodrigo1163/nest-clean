@@ -9,7 +9,7 @@ export class InMemoryAnswerCommentsRepository
 {
 	public items: AnswerComment[] = []
 
-	constructor(private studentsRepository: InMemoryStudentRepository) {}
+	constructor(private studentsRepository = new InMemoryStudentRepository()) {}
 
 	async create(answerComment: AnswerComment) {
 		this.items.push(answerComment)
