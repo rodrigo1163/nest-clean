@@ -6,27 +6,29 @@ import { DomainEvents } from '#/core/events/domain-events.js'
 import { AppModule } from '#/infra/app.module.js'
 import { DatabaseModule } from '#/infra/database/database.module.js'
 import { PrismaService } from '#/infra/database/prisma/prisma.service.js'
-import { AttachmentFactory } from '#test/factories/make-attachment.js'
+import { AnswerFactory } from '#test/factories/make-answers.js'
 import { QuestionFactory } from '#test/factories/make-questions.js'
 import { StudentFactory } from '#test/factories/make-student.js'
 import { waitFor } from '#test/utils/wait-for.js'
 
-describe('On answer creater (E2E)', () => {
+describe('On question best answer chosen (E2E)', () => {
 	let app: INestApplication
 	let studentFactory: StudentFactory
 	let questionFactory: QuestionFactory
+	let answerFactory: AnswerFactory
 	let prisma: PrismaService
 	let jwt: JwtService
 
 	beforeAll(async () => {
 		const moduleRef = await Test.createTestingModule({
 			imports: [AppModule, DatabaseModule],
-			providers: [StudentFactory, QuestionFactory, AttachmentFactory],
+			providers: [StudentFactory, QuestionFactory, AnswerFactory],
 		}).compile()
 
 		app = moduleRef.createNestApplication()
 		studentFactory = moduleRef.get(StudentFactory)
 		questionFactory = moduleRef.get(QuestionFactory)
+		answerFactory = moduleRef.get(AnswerFactory)
 		prisma = moduleRef.get(PrismaService)
 		jwt = moduleRef.get(JwtService)
 
@@ -35,7 +37,7 @@ describe('On answer creater (E2E)', () => {
 		await app.init()
 	})
 
-	it('should send a notification when answer is created', async () => {
+	it('should send a notification when question best answer is chosen', async () => {
 		const user = await studentFactory.makePrismaStudent()
 
 		const accessToken = jwt.sign({
@@ -46,15 +48,17 @@ describe('On answer creater (E2E)', () => {
 			authorId: user.id,
 		})
 
-		const questionId = question.id.toString()
+		const answer = await answerFactory.makePrismaAnswer({
+			questionId: question.id,
+			authorId: user.id,
+		})
+
+		const answerId = answer.id.toString()
 
 		await request(app.getHttpServer())
-			.post(`/questions/${questionId}/answers`)
+			.patch(`/answers/${answerId}/choose-as-best`)
 			.set('Authorization', `Bearer ${accessToken}`)
-			.send({
-				content: 'New answer',
-				attachments: [],
-			})
+			.send()
 
 		await waitFor(async () => {
 			const notificationOnDatabase = await prisma.notification.findFirst({

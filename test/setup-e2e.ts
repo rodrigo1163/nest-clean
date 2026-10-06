@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto'
 import { PrismaPg } from '@prisma/adapter-pg'
 import { config } from 'dotenv'
 import { afterAll, beforeAll } from 'vitest'
+import { DomainEvents } from '#/core/events/domain-events.js'
 import { PrismaClient } from '../src/infra/database/prisma/config/generated/client.js'
 
 config({ path: '.env', override: true })
@@ -28,6 +29,8 @@ beforeAll(async () => {
 	const databaseURL = generateUniqueDatabaseURL(schemaId)
 
 	process.env.DATABASE_URL = databaseURL
+
+	DomainEvents.shouldRun = false
 
 	prisma = new PrismaClient({
 		adapter: new PrismaPg(

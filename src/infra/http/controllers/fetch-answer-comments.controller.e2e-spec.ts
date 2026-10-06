@@ -41,7 +41,7 @@ describe('Fetch answer comments (E2E)', () => {
 
 	test('[GET] /answers/:answerId/comments', async () => {
 		const user = await studentFactory.makePrismaStudent({
-			name: 'Jogn Doe',
+			name: 'John Doe',
 			email: 'johndoe@example.com',
 			password: await hash('123456', 8),
 		})
