@@ -18,6 +18,7 @@ import { FetchRecentQuestionsUseCase } from '#/domain/forum/application/use-case
 import { GetQuestionBySlugUseCase } from '#/domain/forum/application/use-cases/get-question-by-slug.js'
 import { RegisterStudentUseCase } from '#/domain/forum/application/use-cases/register-student.js'
 import { UploadAndCreateAttachmentUseCase } from '#/domain/forum/application/use-cases/upload-and-create-attachment.js'
+import { ReadNotificationUseCase } from '#/domain/notification/application/use-cases/read-notification.js'
 import { CryptographyModule } from '../cryptography/cryptography.module.js'
 import { DatabaseModule } from '../database/database.module.js'
 import { AnswerQuestionController } from './controllers/answer-question.controller.js'
@@ -38,6 +39,7 @@ import { FetchQuestionAnswersController } from './controllers/fetch-question-ans
 import { FetchQuestionCommentsController } from './controllers/fetch-question-comments.controller.js'
 import { FetchRecentQuestionsController } from './controllers/fetch-recent-questions.controller.js'
 import { GetQuestionBySlugController } from './controllers/get-question-by-slug.controller.js'
+import { ReadNotificationController } from './controllers/read-notification.controller.js'
 import { UploadAttachmentController } from './controllers/upload-attachment-controller.js'
 import { StorageModule } from './storage/storage.module.js'
 
@@ -63,6 +65,7 @@ import { StorageModule } from './storage/storage.module.js'
 		FetchQuestionCommentsController,
 		FetchAnswerCommentsController,
 		UploadAttachmentController,
+		ReadNotificationController,
 	],
 	providers: [
 		CreateQuestionUseCase,
@@ -84,6 +87,7 @@ import { StorageModule } from './storage/storage.module.js'
 		FetchQuestionCommentsUseCase,
 		FetchAnswerCommentsUseCase,
 		UploadAndCreateAttachmentUseCase,
+		ReadNotificationUseCase,
 	],
 })
 export class HttpModule {}
