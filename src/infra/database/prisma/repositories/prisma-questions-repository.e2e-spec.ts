@@ -88,4 +88,32 @@ describe('Prisma Questions Repository (E2E)', () => {
 
 		expect(questionDetails).toEqual({ empty: true })
 	})
+	it('should reset question details cache when saving the question', async () => {
+		const user = await studentFactory.makePrismaStudent()
+
+		const question = await questionFactory.makePrismaQuestion({
+			authorId: user.id,
+		})
+
+		const attachment = await attachmentFactory.makePrismaAttachment()
+
+		await questionAttachmentFactory.makePrismaQuestionAttachment({
+			questionId: question.id,
+			attachmentId: attachment.id,
+		})
+		const slug = question.slug.value
+
+		await cacheRepository.set(
+			`questions:${slug}:details`,
+			JSON.stringify({
+				empty: true,
+			}),
+		)
+
+		await questionsRepository.save(question)
+
+		const cached = await cacheRepository.get(`questions:${slug}:details`)
+
+		expect(cached).toBeNull()
+	})
 })
